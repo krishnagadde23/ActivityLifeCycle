@@ -22,10 +22,12 @@ public class MainActivity extends AppCompatActivity {
         TextView t = (TextView) findViewById(R.id.t1);
         t.setText("onCreate(): " + createCount);
 
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
+        int i = 3;
+        i++;
     }
 
     @Override

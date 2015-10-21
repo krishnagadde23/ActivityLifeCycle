@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
         stopCount++;
         TextView t = (TextView) findViewById(R.id.t5);
-        t.setText("onCreate() : " + stopCount);
+        t.setText("onStop() : " + stopCount);
     }
     protected void onRestart()
     {

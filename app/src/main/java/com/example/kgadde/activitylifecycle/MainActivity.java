@@ -1,5 +1,6 @@
 package com.example.kgadde.activitylifecycle;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -17,7 +18,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        final SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
+        final SharedPreferences.Editor editor = sharedPreferences.edit();
 
+        createCount = sharedPreferences.getInt("t1", 0);
         createCount++;
         TextView t = (TextView) findViewById(R.id.t1);
         t.setText("onCreate(): " + createCount);

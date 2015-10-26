@@ -13,18 +13,39 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    int createCount, startCount, resumeCount, pauseCount, stopCount, restartCount, destroyCount;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        final SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
-        final SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        createCount = sharedPreferences.getInt("t1", 0);
+        sharedPreferences = getPreferences(MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+
+        int createCount = sharedPreferences.getInt("createcount", 0);
         createCount++;
         TextView t = (TextView) findViewById(R.id.t1);
         t.setText("onCreate(): " + createCount);
+        editor.putInt("createcount", createCount);
+        editor.commit();
+
+        int pauseCount = sharedPreferences.getInt("pausecount", 0);
+        TextView t2 = (TextView) findViewById(R.id.t4);
+        t2.setText("onResume(): " + pauseCount);
+
+        int stopCount = sharedPreferences.getInt("stopcount", 0);
+        TextView t3 = (TextView) findViewById(R.id.t5);
+        t3.setText("onStop() : " + stopCount);
+
+        int restartCount = sharedPreferences.getInt("restartcount", 0);
+        TextView t4 = (TextView) findViewById(R.id.t6);
+        t4.setText("onRestart(): " + restartCount);
+
+        int destroyCount = sharedPreferences.getInt("destroycount", 0);
+        TextView t5 = (TextView) findViewById(R.id.t7);
+        t5.setText("onDestroy(): " + destroyCount);
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -36,44 +57,62 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart()
     {
         super.onStart();
+        int startCount = sharedPreferences.getInt("startcount", 0);
         startCount++;
         TextView t = (TextView) findViewById(R.id.t2);
         t.setText("onStart(): " + startCount);
+        editor.putInt("startcount", startCount);
+        editor.commit();
     }
     protected void onResume()
     {
         super.onResume();
+        int resumeCount = sharedPreferences.getInt("resumecount", 0);
         resumeCount++;
         TextView t = (TextView) findViewById(R.id.t3);
         t.setText("onResume(): " + resumeCount);
+        editor.putInt("resumecount", resumeCount);
+        editor.commit();
     }
     protected void onPause()
     {
         super.onPause();
+        int pauseCount = sharedPreferences.getInt("pausecount", 0);
         pauseCount++;
         TextView t = (TextView) findViewById(R.id.t4);
-        t.setText("onPause(): " + pauseCount);
+        t.setText("onResume(): " + pauseCount);
+        editor.putInt("pausecount", pauseCount);
+        editor.commit();
     }
     protected void onStop()
     {
         super.onStop();
+        int stopCount = sharedPreferences.getInt("stopcount", 0);
         stopCount++;
         TextView t = (TextView) findViewById(R.id.t5);
         t.setText("onStop() : " + stopCount);
+        editor.putInt("stopcount", stopCount);
+        editor.commit();
     }
     protected void onRestart()
     {
         super.onRestart();
+        int restartCount = sharedPreferences.getInt("restartcount", 0);
         restartCount++;
         TextView t = (TextView) findViewById(R.id.t6);
         t.setText("onRestart(): " + restartCount);
+        editor.putInt("restartcount", restartCount);
+        editor.commit();
     }
     protected void onDestroy()
     {
         super.onDestroy();
+        int destroyCount = sharedPreferences.getInt("destroycount", 0);
         destroyCount++;
         TextView t = (TextView) findViewById(R.id.t7);
         t.setText("onDestroy(): " + destroyCount);
+        editor.putInt("destroycount", destroyCount);
+        editor.commit();
     }
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
